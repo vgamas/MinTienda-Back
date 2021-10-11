@@ -39,7 +39,7 @@ public class Usuario {
 	@Column(nullable = false, unique = true, length = 50)
 	private String correo_usuario;
 	
-	@Column(length = 20)
+	@Column(nullable = false)
 	private String contrasena_usuario;
 	
 	@ManyToOne(optional = false)
@@ -48,7 +48,7 @@ public class Usuario {
 
 //	@Column(columnDefinition="enum('ADMINISTRADOR','USUARIO','CLIENTE', 'PROVEEDOR')", nullable = false)
 	@Column(nullable = false)
-	private char tipo_usuario;
+	private Character tipo_usuario;
 
 	public String getLogin_usuario() {
 		return login_usuario;

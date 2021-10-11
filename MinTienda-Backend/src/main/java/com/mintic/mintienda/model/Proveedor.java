@@ -25,7 +25,7 @@ import javax.persistence.Table;
    estado_proveedor
   */
 
-final class LlaveProveedor implements Serializable {
+/*final class LlaveProveedor implements Serializable {
 	@ManyToOne(optional = false)
 	@JoinColumn(referencedColumnName = "codigo_tipo")
 	private TipoDocumento tipo_doc_proveedor;
@@ -33,6 +33,7 @@ final class LlaveProveedor implements Serializable {
 	@Column(nullable = false)
 	private Long documento_proveedor;
 }
+*/
 
 @Entity
 @Table(name = "proveedor")

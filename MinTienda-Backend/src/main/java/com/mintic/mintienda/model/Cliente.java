@@ -25,7 +25,7 @@ import javax.persistence.Table;
    estado_cliente
  */
 
-final class LlaveCliente implements Serializable {
+/*abstract class LlaveCliente implements Serializable {
 	@ManyToOne(optional = false)
 	@JoinColumn(referencedColumnName = "codigo_tipo")
 	private TipoDocumento tipo_doc_cliente;
@@ -34,6 +34,7 @@ final class LlaveCliente implements Serializable {
 	private Long documento_cliente;
 }
 
+*/
 @Entity
 @Table(name = "cliente")
 @IdClass(value = LlaveCliente.class)

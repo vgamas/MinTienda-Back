@@ -1,5 +1,7 @@
 package com.mintic.mintienda.model;
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,6 +23,7 @@ public class Venta {
 	   valor_venta
 	   iva_venta
 	   total_venta
+	   estado
 	 */
 	
 	@Id
@@ -36,12 +39,26 @@ public class Venta {
 //	@JoinColumn(referencedColumnName = "documento_cliente")
 	private Cliente cliente_venta;
 	
+	private LocalDate fecha_venta;
+	
 	private double valor_venta;
 	
 	private double iva_venta;
 	
 	private double total_venta;
 
+	public LocalDate getFecha_venta() {
+		return fecha_venta;
+	}
+
+	public void setFecha_venta(LocalDate fecha_venta) {
+		this.fecha_venta = fecha_venta;
+	}
+
+	@ManyToOne(optional = false)
+	@JoinColumn(referencedColumnName = "codigo_estado")
+	private Estado estado;
+	
 	public Long getCodigo_venta() {
 		return codigo_venta;
 	}
@@ -88,6 +105,14 @@ public class Venta {
 
 	public void setTotal_venta(double total_venta) {
 		this.total_venta = total_venta;
+	}
+
+	public Estado getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
 	}
 	
 }

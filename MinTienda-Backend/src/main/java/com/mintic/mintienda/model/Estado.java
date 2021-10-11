@@ -18,18 +18,18 @@ public class Estado {
 	
 	@Id
 	@Column(nullable = false, unique = true)
-	private char codigo_estado;
+	private Character codigo_estado;
 	
 	@Column(nullable = false, unique = true, length = 50)
 	private String descripcion_estado;
 
 	// Metodos de la clase
 	
-	public char getCodigo_estado() {
+	public Character getCodigo_estado() {
 		return codigo_estado;
 	}
 
-	public void setCodigo_estado(char codigo_estado) {
+	public void setCodigo_estado(Character codigo_estado) {
 		this.codigo_estado = codigo_estado;
 	}
 

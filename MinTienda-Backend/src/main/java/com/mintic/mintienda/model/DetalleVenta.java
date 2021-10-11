@@ -1,7 +1,5 @@
 package com.mintic.mintienda.model;
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "detalle_venta")
-public class DetalleVenta implements Serializable {
+public class DetalleVenta {
 
 	/*
 	 Descripcion de la clase detalle_venta
