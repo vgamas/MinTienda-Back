@@ -25,26 +25,13 @@ import javax.persistence.Table;
    estado_proveedor
   */
 
-/*final class LlaveProveedor implements Serializable {
-	@ManyToOne(optional = false)
-	@JoinColumn(referencedColumnName = "codigo_tipo")
-	private TipoDocumento tipo_doc_proveedor;
-
-	@Column(nullable = false)
-	private Long documento_proveedor;
-}
-*/
-
 @Entity
 @Table(name = "proveedor")
 @IdClass(value = LlaveProveedor.class)
 public class Proveedor {
 
 	@Id
-	private TipoDocumento tipo_doc_proveedor;
-	
-	@Id
-	private Long documento_proveedor;
+	private LlaveProveedor doc_proveedor;
 	
 	@Column(nullable = false, length = 50)
 	private String nombre_proveedor;
@@ -66,20 +53,13 @@ public class Proveedor {
 	@JoinColumn(referencedColumnName = "codigo_estado")
 	private Estado estado_proveedor;
 
-	public TipoDocumento getTipo_doc_proveedor() {
-		return tipo_doc_proveedor;
+
+	public LlaveProveedor getDoc_proveedor() {
+		return doc_proveedor;
 	}
 
-	public void setTipo_doc_proveedor(TipoDocumento tipo_doc_proveedor) {
-		this.tipo_doc_proveedor = tipo_doc_proveedor;
-	}
-
-	public Long getDocumento_proveedor() {
-		return documento_proveedor;
-	}
-
-	public void setDocumento_proveedor(Long documento_proveedor) {
-		this.documento_proveedor = documento_proveedor;
+	public void setDoc_proveedor(LlaveProveedor doc_proveedor) {
+		this.doc_proveedor = doc_proveedor;
 	}
 
 	public String getNombre_proveedor() {

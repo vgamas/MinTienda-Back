@@ -59,4 +59,16 @@ public class UsuarioServiceImpl implements UsuarioService {
 		usuarioDao.deleteById(id);
 	}
 
+	@Override
+	public int cuentaUsuariosActivos() {
+		// TODO Auto-generated method stub
+		
+		return usuarioDao.cuentaUsuariosActivos();
+	}
+
+	@Override
+	public int login(Usuario usuario) {
+		
+		return usuarioDao.findByNombreUsuarioAndPassword(usuario.getLogin_usuario(), usuario.getContrasena_usuario());
+	}
 }

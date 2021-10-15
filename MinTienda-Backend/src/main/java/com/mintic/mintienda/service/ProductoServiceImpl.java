@@ -19,7 +19,7 @@ public class ProductoServiceImpl implements ProductoService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public Iterable<Producto> findAllbyCategoria(Integer categoria) {
+	public Iterable<Producto> findAllByCategoria(Integer categoria) {
 		// TODO Auto-generated method stub
 		Categoria categoriaProducto = new Categoria();
 		Producto producto = new Producto();

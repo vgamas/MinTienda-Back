@@ -6,7 +6,7 @@ import com.mintic.mintienda.model.Producto;
 
 public interface ProductoService {
 	
-	public Iterable<Producto> findAllbyCategoria(Integer categoria);
+	public Iterable<Producto> findAllByCategoria(Integer categoria);
 	
 	public Optional<Producto> findById(Long id);
 	

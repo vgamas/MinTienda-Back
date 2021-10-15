@@ -15,4 +15,8 @@ public interface UsuarioService {
 	public Usuario save(Usuario usuario);
 	
 	public void deleteById(String id);
+	
+	public int cuentaUsuariosActivos();
+	
+	public int login(Usuario usuario);
 }

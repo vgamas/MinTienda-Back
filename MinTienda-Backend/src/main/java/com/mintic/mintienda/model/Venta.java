@@ -20,6 +20,7 @@ public class Venta {
 	   codigo_venta
 	   login_usr_venta
 	   cliente_venta
+	   fecha_venta
 	   valor_venta
 	   iva_venta
 	   total_venta
@@ -47,17 +48,9 @@ public class Venta {
 	
 	private double total_venta;
 
-	public LocalDate getFecha_venta() {
-		return fecha_venta;
-	}
-
-	public void setFecha_venta(LocalDate fecha_venta) {
-		this.fecha_venta = fecha_venta;
-	}
-
 	@ManyToOne(optional = false)
 	@JoinColumn(referencedColumnName = "codigo_estado")
-	private Estado estado;
+	private Estado estado_venta;
 	
 	public Long getCodigo_venta() {
 		return codigo_venta;
@@ -81,6 +74,14 @@ public class Venta {
 
 	public void setCliente_venta(Cliente cliente_venta) {
 		this.cliente_venta = cliente_venta;
+	}
+
+	public LocalDate getFecha_venta() {
+		return fecha_venta;
+	}
+
+	public void setFecha_venta(LocalDate fecha_venta) {
+		this.fecha_venta = fecha_venta;
 	}
 
 	public double getValor_venta() {
@@ -107,12 +108,12 @@ public class Venta {
 		this.total_venta = total_venta;
 	}
 
-	public Estado getEstado() {
-		return estado;
+	public Estado getEstado_venta() {
+		return estado_venta;
 	}
 
-	public void setEstado(Estado estado) {
-		this.estado = estado;
+	public void setEstado_venta(Estado estado_venta) {
+		this.estado_venta = estado_venta;
 	}
 	
 }

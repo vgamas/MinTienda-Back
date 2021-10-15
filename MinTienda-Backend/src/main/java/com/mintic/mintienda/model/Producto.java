@@ -30,6 +30,9 @@ public class Producto {
 	@JoinColumn(referencedColumnName = "codigo_categoria")
 	private Categoria categoria_producto;
 
+	@Column(nullable = false, length = 50)
+	private String nombre_producto;
+	
 	@ManyToOne(optional = false)
 //	@JoinColumn(referencedColumnName = "tipo_doc_proveedor")
 //	@JoinColumn(referencedColumnName = "documento_proveedor")
@@ -39,7 +42,7 @@ public class Producto {
 	
 	private double iva_compra;
 	
-	private double precio_Venta;
+	private double precio_venta;
 
 	public Long getCodigo_producto() {
 		return codigo_producto;
@@ -55,6 +58,14 @@ public class Producto {
 
 	public void setCategoria_producto(Categoria categoria_producto) {
 		this.categoria_producto = categoria_producto;
+	}
+
+	public String getNombre_producto() {
+		return nombre_producto;
+	}
+
+	public void setNombre_producto(String nombre_producto) {
+		this.nombre_producto = nombre_producto;
 	}
 
 	public Proveedor getProveedor_producto() {
@@ -81,11 +92,11 @@ public class Producto {
 		this.iva_compra = iva_compra;
 	}
 
-	public double getPrecio_Venta() {
-		return precio_Venta;
+	public double getPrecio_venta() {
+		return precio_venta;
 	}
 
-	public void setPrecio_Venta(double precio_Venta) {
-		this.precio_Venta = precio_Venta;
+	public void setPrecio_venta(double precio_Venta) {
+		this.precio_venta = precio_Venta;
 	}
 }

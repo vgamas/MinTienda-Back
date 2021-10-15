@@ -25,27 +25,14 @@ import javax.persistence.Table;
    estado_cliente
  */
 
-/*abstract class LlaveCliente implements Serializable {
-	@ManyToOne(optional = false)
-	@JoinColumn(referencedColumnName = "codigo_tipo")
-	private TipoDocumento tipo_doc_cliente;
-
-	@Column(nullable = false)
-	private Long documento_cliente;
-}
-
-*/
 @Entity
 @Table(name = "cliente")
 @IdClass(value = LlaveCliente.class)
 public class Cliente {
 
 	@Id
-	private TipoDocumento tipo_doc_cliente;
-	
-	@Id
-	private Long documento_cliente;
-	
+	private LlaveCliente doc_cliente;
+		
 	@Column(nullable = false, length = 50)
 	private String nombre_cliente;
 	
@@ -66,20 +53,13 @@ public class Cliente {
 	@JoinColumn(referencedColumnName = "codigo_estado")
 	private Estado estado_cliente;
 
-	public TipoDocumento getTipo_doc_cliente() {
-		return tipo_doc_cliente;
+
+	public LlaveCliente getDoc_cliente() {
+		return doc_cliente;
 	}
 
-	public void setTipo_doc_cliente(TipoDocumento tipo_doc_cliente) {
-		this.tipo_doc_cliente = tipo_doc_cliente;
-	}
-
-	public Long getDocumento_cliente() {
-		return documento_cliente;
-	}
-
-	public void setDocumento_cliente(Long documento_cliente) {
-		this.documento_cliente = documento_cliente;
+	public void setDoc_cliente(LlaveCliente doc_cliente) {
+		this.doc_cliente = doc_cliente;
 	}
 
 	public String getNombre_cliente() {

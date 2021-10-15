@@ -39,8 +39,7 @@ public class VentaServiceImpl implements VentaService {
 		Cliente cliente = new Cliente();
 		Venta venta = new Venta();
 		
-		cliente.setTipo_doc_cliente(llaveCliente.getTipo_doc_cliente());
-		cliente.setDocumento_cliente(llaveCliente.getDocumento_cliente());
+		cliente.setDoc_cliente(llaveCliente);
 
 		venta.setCliente_venta(cliente);
 		

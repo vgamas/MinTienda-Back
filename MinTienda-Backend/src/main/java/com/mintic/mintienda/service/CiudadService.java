@@ -13,4 +13,7 @@ public interface CiudadService {
 	public Ciudad save(Ciudad ciudad);
 	
 	public void deleteById(Integer id);
+	
+	// buscar ciudades por departamento
+//	public Iterable<Ciudad> FindAllByDepartamento(Integer departamento);
 }
