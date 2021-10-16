@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mintic.mintienda.dao.VentaDao;
@@ -13,6 +14,7 @@ import com.mintic.mintienda.model.Cliente;
 import com.mintic.mintienda.model.Usuario;
 import com.mintic.mintienda.model.Venta;
 
+@Service
 public class VentaServiceImpl implements VentaService {
 
 	@Autowired

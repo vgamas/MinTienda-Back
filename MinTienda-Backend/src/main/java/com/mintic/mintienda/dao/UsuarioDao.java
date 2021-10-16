@@ -7,15 +7,15 @@ import org.springframework.stereotype.Repository;
 
 import com.mintic.mintienda.model.Usuario;
 
-@Repository
+//@Repository
 public interface UsuarioDao extends JpaRepository<Usuario, String> {
 	
 	// Validar el login, que el usuario y el password correspondan con un usuario ACTIVO
-	@Query("select count(*) from usuario as u where u.login_usuario= :nombreUsuario and p.contasena_usuario=:password and u.estado_usuario = 'A'")
-	Integer findByNombreUsuarioAndPassword(@Param("nombreUsuario") String nombreUsuario,
-			@Param("password") String password);
+//	@Query("select count(*) from usuario as u where u.login_usuario= :nombreUsuario and p.contasena_usuario=:password and u.estado_usuario = 'A'")
+//	Integer findByNombreUsuarioAndPassword(@Param("nombreUsuario") String nombreUsuario,
+//			@Param("password") String password);
 	
 	//Contar usuarios activos
-	@Query("select count(*) from usuario as u where u.estado_usuario = 'A'")
-	Integer cuentaUsuariosActivos();
+//	@Query("select count(*) from usuario as u where u.estado_usuario = 'A'")
+//	Integer cuentaUsuariosActivos();
 }

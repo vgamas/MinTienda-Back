@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mintic.mintienda.dao.UsuarioDao;
+import com.mintic.mintienda.model.Estado;
 import com.mintic.mintienda.model.Usuario;
 
 @Service
@@ -60,15 +61,45 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 
 	@Override
-	public int cuentaUsuariosActivos() {
+	public long cuentaUsuariosActivos() {
 		// TODO Auto-generated method stub
+		Estado estado = new Estado();
+		Usuario usuario = new Usuario();
+
+		estado.setCodigo_estado('A');
 		
-		return usuarioDao.cuentaUsuariosActivos();
+		usuario.setEstado_usuario(estado);
+		
+		Example<Usuario> usuarioEjemplo = Example.of(usuario);
+
+		return usuarioDao.count(usuarioEjemplo);
 	}
 
 	@Override
+	public int findByNombreUsuarioAndPassword(Usuario usuarioLogin) {
+
+		int cuenta;
+		Estado estado = new Estado();
+		
+		estado.setCodigo_estado('A');
+		
+		usuarioLogin.setEstado_usuario(estado);
+		
+		Example<Usuario> usuarioEjemplo = Example.of(usuarioLogin);
+	
+		cuenta = (int) usuarioDao.count(usuarioEjemplo);
+		
+		return cuenta;
+	}
+	
+	@Override
 	public int login(Usuario usuario) {
 		
-		return usuarioDao.findByNombreUsuarioAndPassword(usuario.getLogin_usuario(), usuario.getContrasena_usuario());
+		if (cuentaUsuariosActivos() > 0)
+			return findByNombreUsuarioAndPassword(usuario);
+		else if (usuario.getLogin_usuario().equals("admininicial") && usuario.getContrasena_usuario().equals("admin12345"))
+			return 0;
+		
+		return (-1);
 	}
 }

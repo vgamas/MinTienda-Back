@@ -85,15 +85,15 @@ public class UsuarioController {
 	}
 	
 	// Validar Login
-	@GetMapping("api/login")
-	public Boolean login() {
+	@PostMapping("api/login")
+	public Boolean login(@RequestBody Usuario usuario) {
 	
-		if (usuarioService.cuentaUsuariosActivos() != 0) {
-			// validar usuario
-			return true;
+		if (usuarioService.login(usuario) == -1) {
+			// Mostrar un mensaje con el Error de usuario
+			return false;
 		}
 		
-		return false;
+		return true;
 	}
 
 }

@@ -3,6 +3,7 @@ package com.mintic.mintienda.model;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
@@ -27,10 +28,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "proveedor")
-@IdClass(value = LlaveProveedor.class)
+//@IdClass(value = LlaveProveedor.class)
 public class Proveedor {
 
-	@Id
+//	@Id
+	@EmbeddedId
 	private LlaveProveedor doc_proveedor;
 	
 	@Column(nullable = false, length = 50)

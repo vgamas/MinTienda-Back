@@ -1,11 +1,8 @@
 package com.mintic.mintienda.model;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -27,12 +24,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "cliente")
-@IdClass(value = LlaveCliente.class)
+//@IdClass(value = LlaveCliente.class)
 public class Cliente {
 
-	@Id
-	private LlaveCliente doc_cliente;
-		
+//	@Id
+	@EmbeddedId
+	private LlaveCliente id_cliente;
+	
 	@Column(nullable = false, length = 50)
 	private String nombre_cliente;
 	
@@ -54,12 +52,12 @@ public class Cliente {
 	private Estado estado_cliente;
 
 
-	public LlaveCliente getDoc_cliente() {
-		return doc_cliente;
+	public LlaveCliente getId_cliente() {
+		return id_cliente;
 	}
 
-	public void setDoc_cliente(LlaveCliente doc_cliente) {
-		this.doc_cliente = doc_cliente;
+	public void setDoc_cliente(LlaveCliente id_cliente) {
+		this.id_cliente = id_cliente;
 	}
 
 	public String getNombre_cliente() {

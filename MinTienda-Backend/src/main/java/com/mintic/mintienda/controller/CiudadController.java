@@ -34,7 +34,7 @@ public class CiudadController {
 	}
 
 	// Buscar una ciudad por su codigo
-	@GetMapping
+	@GetMapping("/{id}")
 	public ResponseEntity<?> read(@PathVariable(value = "id") Integer ciudadId) {
 		Optional<Ciudad> oCiudad = ciudadService.findById(ciudadId); 
 		
@@ -46,7 +46,7 @@ public class CiudadController {
 	
 
 	// Actualizar el nombre de la ciudad
-	@PutMapping
+	@PutMapping("/{id}")
 	public ResponseEntity<?> update(@RequestBody Ciudad ciudad, @PathVariable(value = "id") Integer ciudadId) {
 		Optional<Ciudad> oCiudad = ciudadService.findById(ciudadId); 
 		
@@ -59,7 +59,7 @@ public class CiudadController {
 	}
 
 	// Borrar una ciudad
-	@DeleteMapping
+	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable(value = "id") Integer ciudadId) {
 		Optional<Ciudad> oCiudad = ciudadService.findById(ciudadId); 
 		

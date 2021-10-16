@@ -16,7 +16,9 @@ public interface UsuarioService {
 	
 	public void deleteById(String id);
 	
-	public int cuentaUsuariosActivos();
+	public long cuentaUsuariosActivos();
+	
+	public int findByNombreUsuarioAndPassword(Usuario usuarioLogin);
 	
 	public int login(Usuario usuario);
 }

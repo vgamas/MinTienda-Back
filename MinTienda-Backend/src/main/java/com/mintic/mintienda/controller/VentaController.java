@@ -23,7 +23,7 @@ import com.mintic.mintienda.service.VentaService;
 @RestController
 @RequestMapping("/api/ventas")
 public class VentaController {
-
+	
 	@Autowired
 	private VentaService ventaService;
 	

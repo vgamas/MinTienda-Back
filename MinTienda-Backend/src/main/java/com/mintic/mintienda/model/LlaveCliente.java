@@ -1,10 +1,14 @@
 package com.mintic.mintienda.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-public class LlaveCliente {
+@Embeddable
+public class LlaveCliente implements Serializable {
 	@ManyToOne(optional = false)
 	@JoinColumn(referencedColumnName = "codigo_tipo")
 	private TipoDocumento tipo_doc_cliente;
