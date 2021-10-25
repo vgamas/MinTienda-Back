@@ -10,7 +10,7 @@ public interface UsuarioService {
 	
 	public Optional<Usuario> findById(String id);
 	
-	public Iterable<Usuario> findByTipo(Character tipoUsuario);
+	public Iterable<Usuario> findByTipo(String tipoUsuario);
 	
 	public Usuario save(Usuario usuario);
 	
@@ -18,7 +18,9 @@ public interface UsuarioService {
 	
 	public long cuentaUsuariosActivos();
 	
-	public int findByNombreUsuarioAndPassword(Usuario usuarioLogin);
-	
+	public Optional<Usuario> findByNombreUsuarioAndPassword(String usuario, String password);
+
+	public Iterable<Usuario> findByDocumento(String tipo, Long documento);
+
 	public int login(Usuario usuario);
 }

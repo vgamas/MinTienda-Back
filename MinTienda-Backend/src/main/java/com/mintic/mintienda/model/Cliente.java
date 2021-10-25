@@ -1,5 +1,7 @@
 package com.mintic.mintienda.model;
 
+import javax.persistence.AssociationOverride;
+import javax.persistence.AssociationOverrides;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -24,10 +26,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "cliente")
-//@IdClass(value = LlaveCliente.class)
+@AssociationOverrides(value = {
+		@AssociationOverride(name = "ciudad", joinColumns = @JoinColumn(referencedColumnName = "id_ciudad"))
+})
 public class Cliente {
 
-//	@Id
 	@EmbeddedId
 	private LlaveCliente id_cliente;
 	
@@ -37,15 +40,15 @@ public class Cliente {
 	@Column(nullable = false, length = 100)
 	private String direccion_cliente;
 	
-	@ManyToOne(optional = false)
-	@JoinColumn(referencedColumnName = "codigo_ciudad")
-	private Ciudad ciudad_cliente;
-	
 	@Column(length=10)
 	private String telefono_cliente;
 	
 	@Column(nullable = false, length = 50)
 	private String correo_cliente;
+
+	@ManyToOne(optional = false)
+//	@JoinColumn(referencedColumnName = "id_ciudad")
+	private Ciudad ciudad_cliente;
 	
 	@ManyToOne(optional = false)
 	@JoinColumn(referencedColumnName = "codigo_estado")

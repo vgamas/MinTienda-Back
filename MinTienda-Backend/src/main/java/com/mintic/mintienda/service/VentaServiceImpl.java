@@ -54,14 +54,8 @@ public class VentaServiceImpl implements VentaService {
 	@Transactional(readOnly = true)
 	public Iterable<Venta> findByFecha(LocalDate fecha) {
 		// TODO Auto-generated method stub
-
-		Venta venta = new Venta();
 		
-		venta.setFecha_venta(fecha);
-
-		Example<Venta> ventaEjemplo = Example.of(venta);
-		
-		return ventaDao.findAll(ventaEjemplo);
+		return ventaDao.listarPorFecha(fecha);
 	}
 
 	@Override

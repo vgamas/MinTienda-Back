@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mintic.mintienda.dao.UsuarioDao;
 import com.mintic.mintienda.model.Estado;
+import com.mintic.mintienda.model.TipoDocumento;
 import com.mintic.mintienda.model.Usuario;
 
 @Service
@@ -33,7 +34,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public Iterable<Usuario> findByTipo(Character tipoUsuario) {
+	public Iterable<Usuario> findByTipo(String tipoUsuario) {
 		// TODO Auto-generated method stub
 		
 		Usuario usuario = new Usuario();
@@ -76,30 +77,43 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 
 	@Override
-	public int findByNombreUsuarioAndPassword(Usuario usuarioLogin) {
+	public Optional<Usuario> findByNombreUsuarioAndPassword(String usuario, String password) {
 
-		int cuenta;
-		Estado estado = new Estado();
+		Usuario usuarioLogin = new Usuario();
 		
-		estado.setCodigo_estado('A');
-		
-		usuarioLogin.setEstado_usuario(estado);
+		usuarioLogin.setLogin_usuario(usuario);
+		usuarioLogin.setContrasena_usuario(password);
 		
 		Example<Usuario> usuarioEjemplo = Example.of(usuarioLogin);
 	
-		cuenta = (int) usuarioDao.count(usuarioEjemplo);
-		
-		return cuenta;
+		return usuarioDao.findOne(usuarioEjemplo);
 	}
 	
 	@Override
 	public int login(Usuario usuario) {
 		
-		if (cuentaUsuariosActivos() > 0)
+/*		if (cuentaUsuariosActivos() > 0)
 			return findByNombreUsuarioAndPassword(usuario);
 		else if (usuario.getLogin_usuario().equals("admininicial") && usuario.getContrasena_usuario().equals("admin12345"))
 			return 0;
-		
+*/		
 		return (-1);
+	}
+
+	@Override
+	public Iterable<Usuario> findByDocumento(String tipo, Long documento) {
+		// TODO Auto-generated method stub
+		TipoDocumento tipoDoc = new TipoDocumento();
+		
+		Usuario usuario = new Usuario();
+		
+		tipoDoc.setCodigo_tipo(tipo);
+		
+		usuario.setTipo_doc_usuario(tipoDoc);
+		usuario.setDocumento_usuario(documento);
+				
+		Example<Usuario> usuarioEjemplo = Example.of(usuario);
+	
+		return usuarioDao.findAll(usuarioEjemplo);
 	}
 }

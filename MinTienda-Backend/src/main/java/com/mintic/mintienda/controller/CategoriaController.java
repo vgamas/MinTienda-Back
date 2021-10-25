@@ -77,4 +77,12 @@ public class CategoriaController {
 		
 		return listaCategorias;
 	}
+	
+	// Listar categorias por el nivel superior
+	@GetMapping("/superior")
+	public List<Categoria> readByNivel(int nivel) {
+		List<Categoria> listaCategorias = StreamSupport.stream(categoriaService.findByCategoriaSuperior(nivel) .spliterator(), false).collect(Collectors.toList());
+		
+		return listaCategorias;
+	}
 }

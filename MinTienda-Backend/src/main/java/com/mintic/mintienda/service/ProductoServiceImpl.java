@@ -21,15 +21,8 @@ public class ProductoServiceImpl implements ProductoService {
 	@Transactional(readOnly = true)
 	public Iterable<Producto> findAllByCategoria(Integer categoria) {
 		// TODO Auto-generated method stub
-		Categoria categoriaProducto = new Categoria();
-		Producto producto = new Producto();
 		
-		categoriaProducto.setCodigo_categoria(categoria);
-		producto.setCategoria_producto(categoriaProducto);
-		
-		Example<Producto> productoEjemplo = Example.of(producto);
-		
-		return productoDao.findAll(productoEjemplo);
+		return productoDao.listarPorCategoria(categoria);
 	}
 
 	@Override

@@ -34,8 +34,6 @@ public class Producto {
 	private String nombre_producto;
 	
 	@ManyToOne(optional = false)
-//	@JoinColumn(referencedColumnName = "tipo_doc_proveedor")
-//	@JoinColumn(referencedColumnName = "documento_proveedor")
 	private Proveedor proveedor_producto;
 	
 	private double precio_compra;

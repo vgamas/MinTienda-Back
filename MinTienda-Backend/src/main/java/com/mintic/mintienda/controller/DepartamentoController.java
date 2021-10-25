@@ -35,7 +35,7 @@ public class DepartamentoController {
 	
 	// Buscar una departamento por su codigo
 	@GetMapping("/{id}")
-	public ResponseEntity<?> read(@PathVariable(value = "id") Integer departamentoId) {
+	public ResponseEntity<?> read(@PathVariable(value = "id") String departamentoId) {
 		Optional<Departamento> oDepartamento = departamentoService.findById(departamentoId); 
 		
 		if (!oDepartamento.isPresent())
@@ -46,7 +46,7 @@ public class DepartamentoController {
 	
 	// Actualizar informacion de la departamento
 	@PutMapping("/{id}")
-	public ResponseEntity<?> update(@RequestBody Departamento departamento, @PathVariable(value = "id") Integer departamentoId) {
+	public ResponseEntity<?> update(@RequestBody Departamento departamento, @PathVariable(value = "id") String departamentoId) {
 
 		Optional<Departamento> oDepartamento = departamentoService.findById(departamentoId); 
 		
@@ -60,7 +60,7 @@ public class DepartamentoController {
 	
 	// Borrar una departamento
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> delete(@PathVariable(value = "id") Integer departamentoId) {
+	public ResponseEntity<?> delete(@PathVariable(value = "id") String departamentoId) {
 		
 		if (!departamentoService.findById(departamentoId).isPresent())
 			return ResponseEntity.notFound().build();

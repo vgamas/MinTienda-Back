@@ -22,6 +22,7 @@ public class DetalleVentaServiceImpl implements DetalleVentaService {
 	public Iterable<DetalleVenta> findAllByVenta(Long venta) {
 		// TODO Auto-generated method stub
 
+/*		System.out.println(venta);
 		Venta ventaActual = new Venta();
 		DetalleVenta detalle = new DetalleVenta();
 		
@@ -31,6 +32,8 @@ public class DetalleVentaServiceImpl implements DetalleVentaService {
 		Example<DetalleVenta> detalleEjemplo = Example.of(detalle);
 		
 		return detalleVentaDao.findAll(detalleEjemplo);
+
+*/		return detalleVentaDao.ListarPorVenta(venta);
 	}
 
 	@Override

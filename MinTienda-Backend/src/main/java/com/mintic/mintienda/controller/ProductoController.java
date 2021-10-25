@@ -76,9 +76,10 @@ public class ProductoController {
 		return ResponseEntity.ok().build();
 	}
 	
-	// Listar todas las productos
-	@GetMapping
-	public List<Producto> readAll(@PathVariable Integer categoria) {
+	// Listar todas las productos de una categoria
+	@GetMapping("/categoria/{id}")
+	public List<Producto> readAll(@PathVariable(value = "id") Integer categoria) {
+
 		List<Producto> listaProductos = StreamSupport.stream(productoService.findAllByCategoria(categoria).spliterator(), false).collect(Collectors.toList());
 		
 		return listaProductos;

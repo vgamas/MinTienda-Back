@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mintic.mintienda.model.Cliente;
 import com.mintic.mintienda.model.LlaveCliente;
+import com.mintic.mintienda.model.TipoDocumento;
 import com.mintic.mintienda.service.ClienteService;
 
 @RestController
@@ -35,8 +36,16 @@ public class ClienteController {
 	}
 	
 	// Buscar una cliente por su codigo
-	@GetMapping("/{id}")
-	public ResponseEntity<?> read(@PathVariable(value = "id") LlaveCliente clienteId) {
+	@GetMapping("/id")
+	public ResponseEntity<?> read(String tipo, Long documento) {
+		
+		TipoDocumento tipoDoc = new TipoDocumento();
+		LlaveCliente clienteId = new LlaveCliente();
+		
+		tipoDoc.setCodigo_tipo(tipo);
+		clienteId.setTipo_doc_cliente(tipoDoc);
+		clienteId.setDocumento_cliente(documento);
+		
 		Optional<Cliente> oCliente = clienteService.findById(clienteId); 
 		
 		if (!oCliente.isPresent())
@@ -46,8 +55,15 @@ public class ClienteController {
 	}
 	
 	// Actualizar informacion de la cliente
-	@PutMapping("/{id}")
-	public ResponseEntity<?> update(@RequestBody Cliente cliente, @PathVariable(value = "id") LlaveCliente clienteId) {
+	@PutMapping("/id")
+	public ResponseEntity<?> update(@RequestBody Cliente cliente, String tipo, Long documento) {
+
+		TipoDocumento tipoDoc = new TipoDocumento();
+		LlaveCliente clienteId = new LlaveCliente();
+		
+		tipoDoc.setCodigo_tipo(tipo);
+		clienteId.setTipo_doc_cliente(tipoDoc);
+		clienteId.setDocumento_cliente(documento);
 
 		Optional<Cliente> oCliente = clienteService.findById(clienteId); 
 		
@@ -59,13 +75,20 @@ public class ClienteController {
 		oCliente.get().setCiudad_cliente(cliente.getCiudad_cliente());
 		oCliente.get().setTelefono_cliente(cliente.getTelefono_cliente());
 		oCliente.get().setCorreo_cliente(cliente.getCorreo_cliente());
+		oCliente.get().setEstado_cliente(cliente.getEstado_cliente());
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.save(oCliente.get()));
 	}
 	
 	// Borrar una cliente
-	@DeleteMapping("/{id}")
-	public ResponseEntity<?> delete(@PathVariable(value = "id") LlaveCliente clienteId) {
+	@DeleteMapping("/id")
+	public ResponseEntity<?> delete(String tipo, Long documento) {
+		TipoDocumento tipoDoc = new TipoDocumento();
+		LlaveCliente clienteId = new LlaveCliente();
+		
+		tipoDoc.setCodigo_tipo(tipo);
+		clienteId.setTipo_doc_cliente(tipoDoc);
+		clienteId.setDocumento_cliente(documento);
 		
 		if (!clienteService.findById(clienteId).isPresent())
 			return ResponseEntity.notFound().build();
@@ -79,6 +102,14 @@ public class ClienteController {
 	@GetMapping
 	public List<Cliente> readAll() {
 		List<Cliente> listaClientes = StreamSupport.stream(clienteService.findAll().spliterator(), false).collect(Collectors.toList());
+		
+		return listaClientes;
+	}
+	
+	// Lista para tabla de clientes
+	@GetMapping("tabla")
+	public List<?> ListarParaTabla() {
+		List<?> listaClientes = StreamSupport.stream(clienteService.ListaClientes().spliterator(), false).collect(Collectors.toList());
 		
 		return listaClientes;
 	}

@@ -14,4 +14,6 @@ public interface ClienteService {
 	public Cliente save(Cliente cliente);
 	
 	public void deleteById(LlaveCliente id);
+	
+	public Iterable<?> ListaClientes();
 }

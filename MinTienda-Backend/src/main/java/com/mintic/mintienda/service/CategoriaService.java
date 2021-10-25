@@ -13,5 +13,7 @@ public interface CategoriaService {
 	public Categoria save(Categoria categoria);
 	
 	public void delete(Integer id);
+	
+	public Iterable<Categoria> findByCategoriaSuperior(Integer id_categoria);
 
 }

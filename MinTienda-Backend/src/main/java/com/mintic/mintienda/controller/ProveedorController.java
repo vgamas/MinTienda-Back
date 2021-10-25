@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mintic.mintienda.model.Proveedor;
+import com.mintic.mintienda.model.TipoDocumento;
 import com.mintic.mintienda.model.LlaveProveedor;
 import com.mintic.mintienda.service.ProveedorService;
 
@@ -35,8 +36,16 @@ public class ProveedorController {
 	}
 	
 	// Buscar una proveedor por su codigo
-	@GetMapping("/{id}")
-	public ResponseEntity<?> read(@PathVariable(value = "id") LlaveProveedor proveedorId) {
+	@GetMapping("/id")
+	public ResponseEntity<?> read(String tipo, Long documento) {
+		
+		TipoDocumento tipoDoc = new TipoDocumento();
+		LlaveProveedor proveedorId = new LlaveProveedor();
+		
+		tipoDoc.setCodigo_tipo(tipo);
+		proveedorId.setTipo_doc_proveedor(tipoDoc);
+		proveedorId.setDocumento_proveedor(documento);
+		
 		Optional<Proveedor> oProveedor = proveedorService.findById(proveedorId); 
 		
 		if (!oProveedor.isPresent())
@@ -46,8 +55,15 @@ public class ProveedorController {
 	}
 	
 	// Actualizar informacion de la proveedor
-	@PutMapping("/{id}")
-	public ResponseEntity<?> update(@RequestBody Proveedor proveedor, @PathVariable(value = "id") LlaveProveedor proveedorId) {
+	@PutMapping("/id")
+	public ResponseEntity<?> update(@RequestBody Proveedor proveedor, String tipo, Long documento) {
+		
+		TipoDocumento tipoDoc = new TipoDocumento();
+		LlaveProveedor proveedorId = new LlaveProveedor();
+		
+		tipoDoc.setCodigo_tipo(tipo);
+		proveedorId.setTipo_doc_proveedor(tipoDoc);
+		proveedorId.setDocumento_proveedor(documento);
 
 		Optional<Proveedor> oProveedor = proveedorService.findById(proveedorId); 
 		
@@ -65,8 +81,15 @@ public class ProveedorController {
 	}
 	
 	// Borrar una proveedor
-	@DeleteMapping("/{id}")
-	public ResponseEntity<?> delete(@PathVariable(value = "id") LlaveProveedor proveedorId) {
+	@DeleteMapping("/id")
+	public ResponseEntity<?> delete(String tipo, Long documento) {
+		
+		TipoDocumento tipoDoc = new TipoDocumento();
+		LlaveProveedor proveedorId = new LlaveProveedor();
+		
+		tipoDoc.setCodigo_tipo(tipo);
+		proveedorId.setTipo_doc_proveedor(tipoDoc);
+		proveedorId.setDocumento_proveedor(documento);
 		
 		if (!proveedorService.findById(proveedorId).isPresent())
 			return ResponseEntity.notFound().build();

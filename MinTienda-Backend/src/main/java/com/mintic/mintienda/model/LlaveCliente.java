@@ -1,6 +1,7 @@
 package com.mintic.mintienda.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -31,5 +32,22 @@ public class LlaveCliente implements Serializable {
 	public void setDocumento_cliente(Long documento_cliente) {
 		this.documento_cliente = documento_cliente;
 	}
-	
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(documento_cliente, tipo_doc_cliente);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		LlaveCliente other = (LlaveCliente) obj;
+		return Objects.equals(documento_cliente, other.documento_cliente)
+				&& Objects.equals(tipo_doc_cliente, other.tipo_doc_cliente);
+	}	
 }

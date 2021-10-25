@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mintic.mintienda.model.Estado;
 import com.mintic.mintienda.model.Usuario;
 import com.mintic.mintienda.service.UsuarioService;
 
@@ -85,15 +86,45 @@ public class UsuarioController {
 	}
 	
 	// Validar Login
-	@PostMapping("api/login")
-	public Boolean login(@RequestBody Usuario usuario) {
+	@GetMapping("/login")
+	public ResponseEntity<?> login(String login, String password) {
 	
-		if (usuarioService.login(usuario) == -1) {
-			// Mostrar un mensaje con el Error de usuario
-			return false;
+		if (usuarioService.cuentaUsuariosActivos() > 0) {
+			 Optional<Usuario> usuario = usuarioService.findByNombreUsuarioAndPassword(login, password);
+			 
+			 if (usuario.isPresent())
+				 return ResponseEntity.status(HttpStatus.FOUND).body(usuario.get());
+		}
+		else {
+			if ((login.equals("admininicial") && password.equals("admin12345"))) {
+				Usuario usuario = new Usuario();
+				Estado estadoU = new Estado();
+				
+				estadoU.setCodigo_estado('A');
+				
+				usuario.setLogin_usuario(login);
+				usuario.setContrasena_usuario(password);
+				usuario.setEstado_usuario(estadoU);
+				usuario.setNombre_usuario("Admininicial");
+
+				return ResponseEntity.ok(usuario);
+			}
+			else {
+				 Optional<Usuario> usuario = usuarioService.findByNombreUsuarioAndPassword(login, password);
+				 
+				 if (usuario.isPresent())
+					 return ResponseEntity.status(HttpStatus.FOUND).body(usuario.get());
+			}
 		}
 		
-		return true;
+		return ResponseEntity.notFound().build();
 	}
-
+	
+	// Consultar usuario por documento
+	@GetMapping("/documento")
+	public List<Usuario> readByDoc(String tipo, Long docu) {
+		List<Usuario> listaUsuarios = StreamSupport.stream(usuarioService.findByDocumento(tipo, docu).spliterator(), false).collect(Collectors.toList());
+		
+		return listaUsuarios;
+	}
 }

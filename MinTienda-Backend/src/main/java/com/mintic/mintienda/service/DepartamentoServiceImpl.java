@@ -24,7 +24,7 @@ public class DepartamentoServiceImpl implements DepartamentoService {
 
 	@Override
 	@Transactional(readOnly=true)
-	public Optional<Departamento> findById(Integer id) {
+	public Optional<Departamento> findById(String id) {
 		// TODO Auto-generated method stub
 		return departamentoDao.findById(id);
 	}
@@ -38,10 +38,9 @@ public class DepartamentoServiceImpl implements DepartamentoService {
 
 	@Override
 	@Transactional
-	public void delete(Integer id) {
+	public void delete(String id) {
 		// TODO Auto-generated method stub
 		
 		departamentoDao.deleteById(id);
 	}
-
 }

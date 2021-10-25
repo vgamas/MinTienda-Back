@@ -8,9 +8,9 @@ public interface DepartamentoService {
 
 	public Iterable<Departamento> findAll();
 	
-	public Optional<Departamento> findById(Integer id);
+	public Optional<Departamento> findById(String id);
 	
 	public Departamento save(Departamento departamento);
 	
-	public void delete(Integer id);
+	public void delete(String id);
 }

@@ -1,52 +1,37 @@
 package com.mintic.mintienda.model;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+/* Definicion de los atributos de la clase
+
+   codigo_ciudad
+   codigo_dpto_ciudad
+   nombre_ciudad
+   foreign key (codigo_dpto_ciudad) references departamento(codigo_departamento)
+*/
+
 
 @Entity
 @Table(name="ciudad")
 public class Ciudad {
 
-	/* Definicion de los atributos de la clase
- 
-	 codigo_ciudad
-	 codigo_dpto_ciudad
-	 nombre_ciudad
-	 foreign key (codigo_dpto_ciudad) references departamento(codigo_departamento)
-	 */
-
-	@Id
-	@Column(unique = true, nullable = false)
-	private Integer codigo_ciudad;
-	
-	// falta relacionarla con la tabla departamento por el campo codigo_departamento
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "codigo_departamento")
-	private Departamento codigo_dpto_ciudad;
-	
+	@EmbeddedId
+	private LlaveCiudad id_ciudad;
+		
 	@Column(nullable = false, length = 50)
 	private String nombre_ciudad;
 
 	// Metodos de la clase
 	
-	public Integer getCodigo_ciudad() {
-		return codigo_ciudad;
+	public LlaveCiudad getId_ciudad() {
+		return id_ciudad;
 	}
 
-	public void setCodigo_ciudad(Integer codigo_ciudad) {
-		this.codigo_ciudad = codigo_ciudad;
-	}
-
-	public Departamento getCodigo_dpto_ciudad() {
-		return codigo_dpto_ciudad;
-	}
-
-	public void setCodigo_dpto_ciudad(Departamento codigo_dpto_ciudad) {
-		this.codigo_dpto_ciudad = codigo_dpto_ciudad;
+	public void setId_ciudad(LlaveCiudad id_ciudad) {
+		this.id_ciudad = id_ciudad;
 	}
 
 	public String getNombre_ciudad() {

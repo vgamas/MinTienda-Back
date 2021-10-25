@@ -1,5 +1,6 @@
 package com.mintic.mintienda.service;
 
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +18,14 @@ public class ClienteServiceImpl implements ClienteService {
 	private ClienteDao clienteDao;
 	
 	@Override
-	@Transactional(readOnly=true)
+	@Transactional(readOnly = true)
 	public Iterable<Cliente> findAll() {
 		// TODO Auto-generated method stub
 		return clienteDao.findAll();
 	}
 
 	@Override
-	@Transactional(readOnly=true)
+	@Transactional(readOnly = true)
 	public Optional<Cliente> findById(LlaveCliente id) {
 		// TODO Auto-generated method stub
 		return clienteDao.findById(id);
@@ -45,4 +46,9 @@ public class ClienteServiceImpl implements ClienteService {
 		clienteDao.deleteById(id);
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public Iterable<?> ListaClientes() {
+		return clienteDao.ListarResumenClientes();
+	}
 }

@@ -47,8 +47,8 @@ public class Usuario {
 	private Estado estado_usuario;
 
 //	@Column(columnDefinition="enum('ADMINISTRADOR','USUARIO','CLIENTE', 'PROVEEDOR')", nullable = false)
-	@Column(nullable = false)
-	private Character tipo_usuario;
+	@Column(nullable = true, length = 1)
+	private String tipo_usuario;
 
 	public String getLogin_usuario() {
 		return login_usuario;
@@ -106,11 +106,11 @@ public class Usuario {
 		this.estado_usuario = estado_usuario;
 	}
 
-	public char getTipo_usuario() {
+	public String getTipo_usuario() {
 		return tipo_usuario;
 	}
 
-	public void setTipo_usuario(char tipo_usuario) {
+	public void setTipo_usuario(String tipo_usuario) {
 		this.tipo_usuario = tipo_usuario;
 	}
 }

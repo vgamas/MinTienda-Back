@@ -35,9 +35,7 @@ public class Venta {
 	@JoinColumn(referencedColumnName = "login_usuario")
 	private Usuario login_usr_venta;
 
-	@ManyToOne
-//	@JoinColumn(referencedColumnName = "tipo_doc_cliente")
-//	@JoinColumn(referencedColumnName = "documento_cliente")
+	@ManyToOne(optional = false)
 	private Cliente cliente_venta;
 	
 	private LocalDate fecha_venta;

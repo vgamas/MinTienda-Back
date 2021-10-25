@@ -1,5 +1,7 @@
 package com.mintic.mintienda.controller;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -80,6 +82,20 @@ public class VentaController {
 	@GetMapping
 	public List<Venta> readAll() {
 		List<Venta> listaVentas = StreamSupport.stream(ventaService.findAll().spliterator(), false).collect(Collectors.toList());
+		
+		return listaVentas;
+	}
+	
+	// Listar las ventas de una fecha
+	// Listar todas las ventas
+	@GetMapping("/fecha")
+	public List<Venta> readAllByDate(String fechaStr) {
+		
+		LocalDate fecha;
+		
+		fecha = LocalDate.parse(fechaStr);
+		
+		List<Venta> listaVentas = StreamSupport.stream(ventaService.findByFecha(fecha).spliterator(), false).collect(Collectors.toList());
 		
 		return listaVentas;
 	}

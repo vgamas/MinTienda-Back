@@ -2,6 +2,8 @@ package com.mintic.mintienda.model;
 
 import java.io.Serializable;
 
+import javax.persistence.AssociationOverride;
+import javax.persistence.AssociationOverrides;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -28,10 +30,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "proveedor")
-//@IdClass(value = LlaveProveedor.class)
+@AssociationOverrides(value = {
+		@AssociationOverride(name = "ciudad", joinColumns = @JoinColumn(referencedColumnName = "id_ciudad"))
+})
 public class Proveedor {
 
-//	@Id
 	@EmbeddedId
 	private LlaveProveedor doc_proveedor;
 	
@@ -42,7 +45,7 @@ public class Proveedor {
 	private String direccion_proveedor;
 	
 	@ManyToOne(optional = false)
-	@JoinColumn(referencedColumnName = "codigo_ciudad")
+//	@JoinColumn(referencedColumnName = "ciudad_id")
 	private Ciudad ciudad_proveedor;
 	
 	@Column(length=10)

@@ -17,19 +17,19 @@ public class Departamento {
 	 */
 	
 	@Id
-	@Column(nullable = false, unique = true)
-	private Integer codigo_departamento;
+	@Column(nullable = false, unique = true, length=2)
+	private String codigo_departamento;
 	
 	@Column(nullable = false, length = 50)
 	private String nombre_departamento;
 
 	// Metodos de la clase
 
-	public Integer getCodigo_departamento() {
+	public String getCodigo_departamento() {
 		return codigo_departamento;
 	}
 
-	public void setCodigo_departamento(Integer codigo_departamento) {
+	public void setCodigo_departamento(String codigo_departamento) {
 		this.codigo_departamento = codigo_departamento;
 	}
 

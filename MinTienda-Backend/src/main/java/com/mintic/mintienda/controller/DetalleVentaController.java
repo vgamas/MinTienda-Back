@@ -75,7 +75,7 @@ public class DetalleVentaController {
 	}
 	
 	// Listar todas las detalleVentas
-	@GetMapping
+	@GetMapping("/venta/{id}")
 	public List<DetalleVenta> readAll(@PathVariable(value = "id") Long ventaId) {
 		List<DetalleVenta> listaDetalleVentas = StreamSupport.stream(detalleVentaService.findAllByVenta(ventaId).spliterator(), false).collect(Collectors.toList());
 		
